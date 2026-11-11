@@ -1,0 +1,8 @@
+[
+  {"order_id": "ORD-5001", "customer": "Emily R.", "sku": "HD-1001", "qty": 1, "status": "Delivered", "carrier": "UPS", "tracking": "1Z999AA10000001", "order_date": "2026-10-20", "eta": "2026-10-27"},
+  {"order_id": "ORD-5002", "customer": "James T.", "sku": "HD-1004", "qty": 2, "status": "Shipped", "carrier": "FedEx", "tracking": "7712000000002", "order_date": "2026-11-05", "eta": "2026-11-13"},
+  {"order_id": "ORD-5003", "customer": "Priya K.", "sku": "HD-1006", "qty": 1, "status": "Processing", "carrier": null, "tracking": null, "order_date": "2026-11-09", "eta": "2026-11-18"},
+  {"order_id": "ORD-5004", "customer": "Carlos M.", "sku": "HD-1003", "qty": 1, "status": "Backordered", "carrier": null, "tracking": null, "order_date": "2026-11-02", "eta": "2026-11-25"},
+  {"order_id": "ORD-5005", "customer": "Sarah L.", "sku": "HD-1008", "qty": 3, "status": "Delivered", "carrier": "USPS", "tracking": "9400100000000000000005", "order_date": "2026-10-28", "eta": "2026-11-01"},
+  {"order_id": "ORD-5006", "customer": "Daniel W.", "sku": "HD-1009", "qty": 1, "status": "Cancelled", "carrier": null, "tracking": null, "order_date": "2026-10-30", "eta": null}
+]

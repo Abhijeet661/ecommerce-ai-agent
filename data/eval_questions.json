@@ -1,0 +1,12 @@
+[
+  {"question": "Where is my order ORD-5002?", "expected_tools": ["get_order_status"], "expected_keywords": ["shipped", "fedex"]},
+  {"question": "Has order ORD-5001 been delivered?", "expected_tools": ["get_order_status"], "expected_keywords": ["delivered"]},
+  {"question": "Is the mango wood coffee table in stock?", "expected_tools": ["search_products"], "expected_keywords": ["14"]},
+  {"question": "Do you have the ceramic table vases available right now?", "expected_tools": ["search_products"], "expected_keywords": ["out of stock"]},
+  {"question": "What are the dimensions of product HD-1006?", "expected_tools": ["get_product_details"], "expected_keywords": ["31", "70"]},
+  {"question": "Show me living room furniture under 300 dollars.", "expected_tools": ["search_products"], "expected_keywords": ["coffee table"]},
+  {"question": "How many units of HD-1005 are left?", "expected_tools": ["check_inventory"], "expected_keywords": ["55"]},
+  {"question": "My order ORD-5005 arrived with a torn pillow cover. Please raise a complaint.", "expected_tools": ["create_support_ticket"], "expected_keywords": ["ticket"]},
+  {"question": "What material is the kitchen cart made of?", "expected_tools": ["search_products"], "expected_keywords": ["acacia"]},
+  {"question": "Why is order ORD-5004 delayed?", "expected_tools": ["get_order_status"], "expected_keywords": ["backordered"]}
+]
