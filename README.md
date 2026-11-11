@@ -1,11 +1,11 @@
-# E-commerce AI Agent: Listing Writer + Customer Support
+# E-commerce AI Agent: Tool-Calling LLM Agent + Self-Correcting Listing Generator
 
 ![tests](https://github.com/Abhijeet661/ecommerce-ai-agent/actions/workflows/tests.yml/badge.svg)
 
-A Python AI agent for an online home decor and furniture store. It automates two everyday e-commerce jobs:
+A Python AI agent for an e-commerce catalog (home decor and furniture). It automates two e-commerce workflows with LLMs:
 
 1. **Listing agent**: turns raw catalog data (SKU, material, color, dimensions, features) into marketplace-ready listings for Amazon or Walmart: title, 5 bullet points, description and search terms. A rule-based validator checks every listing, and if it fails, the exact problems are sent back to the model so it can fix them (**self-correction loop**).
-2. **Support agent**: answers customer questions about products, stock and orders using **LLM function calling**. The model decides which tool to call, the code runs it on real data, and the model answers from the result instead of guessing. It can also open a support ticket for damaged or wrong items.
+2. **Tool-calling agent**: resolves product, stock and order queries using **LLM function calling**. The model decides which tool to call, the code runs it on real data, and the model answers from the result instead of guessing. It can also open an issue ticket for damaged or wrong items.
 
 It also has an **evaluation script** that measures how often the agent picks the right tool and gives the right facts, plus **unit tests** that run with a mock LLM (no API key needed).
 
@@ -13,7 +13,7 @@ It also has an **evaluation script** that measures how often the agent picks the
 
 ```
                        ┌──────────────────────────────┐
- Customer question ──▶ │  Support agent (LLM)         │
+ User query ───────▶ │  Tool-calling agent (LLM)    │
                        │  decides: answer or use tool │
                        └──────────────┬───────────────┘
                                       │ tool call (JSON)
@@ -24,7 +24,7 @@ It also has an **evaluation script** that measures how often the agent picks the
           └───────────────┴───────────┬──────────────┴─────────────────────┘
                                       │ tool result (JSON) goes back to the LLM
                                       ▼
-                           Final answer to customer
+                           Final answer (grounded in data)
 
 
  Product facts ──▶ LLM writes listing ──▶ Validator ──pass──▶ Save (JSON + CSV)
@@ -60,10 +60,10 @@ Get a free Gemini API key from Google AI Studio (aistudio.google.com) and put it
 # Write and validate Amazon listings for the first 3 products
 python main.py listings --marketplace amazon --limit 3
 
-# Ask the support agent one question and show its tool calls
+# Ask the agent one question and show its tool calls
 python main.py ask "Where is my order ORD-5002?" --verbose
 
-# Chat with the support agent
+# Chat with the agent
 python main.py chat --verbose
 
 # Evaluate the agent on the test questions
@@ -83,7 +83,7 @@ ecommerce-ai-agent/
 ├── agent/
 │   ├── llm.py               # OpenAI-compatible API client with retry on rate limits
 │   ├── tools.py             # 5 tools + JSON schemas for function calling
-│   ├── support_agent.py     # tool-calling agent loop
+│   ├── support_agent.py     # tool-calling agent loop (SupportAgent class)
 │   ├── listing_agent.py     # listing writer with self-correction
 │   ├── validators.py        # marketplace rules (guardrails)
 │   └── evaluate.py          # tool accuracy and answer accuracy
@@ -102,7 +102,7 @@ ecommerce-ai-agent/
 
 ## Next steps
 
-- Rebuild the support flow with LangGraph and add memory across sessions
+- Rebuild the agent loop with LangGraph and add memory across sessions
 - Add RAG over product manuals and return policies
 - Connect real APIs (Shopify, Amazon SP-API) and trigger runs from n8n
 - Add a Streamlit web interface
